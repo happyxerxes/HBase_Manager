@@ -1,0 +1,43 @@
+/*    */ package com.vg.hbase.operations.base;
+/*    */ 
+/*    */ import org.apache.hadoop.hbase.filter.WritableByteArrayComparable;
+//import org.apache.hadoop.hbase.filter.;
+/*    */ import org.apache.hadoop.hbase.util.Bytes;
+/*    */ 
+/*    */ public class LongComparator extends WritableByteArrayComparable
+/*    */ {
+/*    */   public LongComparator()
+/*    */   {
+/*    */   }
+/*    */ 
+/*    */   public LongComparator(byte[] value)
+/*    */   {
+/* 30 */     super(value);
+/*    */   }
+/*    */ 
+/*    */   public LongComparator(Long val)
+/*    */   {
+/* 41 */     super(Bytes.toBytes(val.longValue()));
+/*    */   }
+/*    */ 
+/*    */   public int compareTo(byte[] other)
+/*    */   {
+/* 50 */     Long o = Long.valueOf(Bytes.toLong(other));
+/* 51 */     Long t = Long.valueOf(Bytes.toLong(getValue()));
+/*    */ 
+/* 53 */     if (t == o) {
+/* 54 */       return 0;
+/*    */     }
+/*    */ 
+/* 57 */     if (t.longValue() < o.longValue()) {
+/* 58 */       return -1;
+/*    */     }
+/*    */ 
+/* 61 */     return 1;
+/*    */   }
+/*    */ }
+
+/* Location:           E:\spark_windows\documents\hbase\HBase-Manager-1.4-RC1\
+ * Qualified Name:     com.vg.hbase.operations.base.LongComparator
+ * JD-Core Version:    0.6.2
+ */
